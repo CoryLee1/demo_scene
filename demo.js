@@ -3,6 +3,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { GlitchPass } from 'three/addons/postprocessing/GlitchPass.js';
+// 先导入音频类
+import { AudioListener, Audio, AudioLoader } from 'three';
+
 
 const scene = new THREE.Scene();
 let npcMixer; // 用于npc动画的mixer
@@ -36,6 +39,22 @@ scene.add(ambientLight);
 const directionalLight = new THREE.DirectionalLight(0xCCCC66, 8);
 directionalLight.position.set(1, 1, 1);
 scene.add(directionalLight);
+
+// 创建一个监听器并添加到相机
+const listener = new AudioListener();
+camera.add(listener);
+
+// 创建一个全局音频源
+const sound = new Audio(listener);
+
+// 加载一个音频文件并将其设置为音频源的缓冲区
+const audioLoader = new AudioLoader();
+audioLoader.load('endleSSStation.mp3', function(buffer) {
+  sound.setBuffer(buffer);
+  sound.setLoop(true);
+  sound.setVolume(0.5);
+  sound.play(); // 音乐将在加载后自动播放
+});
 
 // 加载场景模型
 const loader = new GLTFLoader();
@@ -105,7 +124,7 @@ loadNPC('npc4.glb', [0, 0, -2], [1.35, 1.35, 1.35], 4);
 loadNPC('npc5.glb', [0, 0, -1], [1.35, 1.35, 1.35], 4);
 loadNPC('npc6.glb', [-1, 0, 8], [1.35, 1.35, 1.35], 7);
 loadNPC('npc7.glb', [-0.3, 0, 3], [1.35, 1.35, 1.35], 8);
-loadNPC('npc8.glb', [-2.5, 0, 0], [1.35, 1.35, 1.35], 5);
+loadNPC('npc8.glb', [-2.5, 0, 0], [1.35, 1.35, 1.35], 5);//Freestyling Dancing
 loadNPC('npc9.glb', [-2.1, 0.5, -3], [1.35, 1.35, 1.35], 6);
 
 loader.load('player.glb', function (gltf) {

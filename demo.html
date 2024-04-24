@@ -9,8 +9,10 @@
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
-    <script type="importmap">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.2/addons/p5.sound.min.js"></script>
+            <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+            <script type="importmap">
     {
         "imports": {
             "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
@@ -18,25 +20,31 @@
         }
     }
     </script>
-    <!-- processing -->
-    <script type="text/javascript" src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
-    <script type="text/javascript" src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
-    <script type="text/javascript" src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
-    <script type="text/javascript" src="https://threejs.org/examples/js/postprocessing/MaskPass.js"></script>
-    <!-- shaders -->
-    <script type="module">
-        import { DragControls } from 'three/addons/controls/DragControls.js';
-        window.DragControls = DragControls;
-    </script>
-
-
-
+            <!-- processing -->
+            <script type="text/javascript"
+                src="https://threejs.org/examples/js/postprocessing/EffectComposer.js"></script>
+            <script type="text/javascript" src="https://threejs.org/examples/js/postprocessing/ShaderPass.js"></script>
+            <script type="text/javascript" src="https://threejs.org/examples/js/postprocessing/RenderPass.js"></script>
+            <script type="text/javascript" src="https://threejs.org/examples/js/postprocessing/MaskPass.js"></script>
+            <!-- shaders -->
+            <script type="module">
+                import { DragControls } from 'three/addons/controls/DragControls.js';
+                window.DragControls = DragControls;
+            </script>
 </head>
 
 <body style="margin: 0;">
-
+    <script>
+        document.body.addEventListener('keydown', function() {
+          var audio = document.querySelector('audio');
+          // 检查音频是否已经在播放，如果没有，才调用 play 方法
+          if (audio.paused) {
+            audio.play();
+          }
+        });
+      </script>
+      
     <script type="module" src="demo.js"></script>
-
+    
 </body>
-
 </html>
