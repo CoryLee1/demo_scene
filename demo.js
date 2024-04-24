@@ -236,7 +236,7 @@ function animate() {
   if (!isGlitchActive && currentTime - lastGlitchTime > glitchInterval) {
     // 随机生成下一次故障效果的时间间隔和持续时间
     glitchInterval = 60000; // 30秒到300秒之间
-    glitchDuration = 3000; // 500毫秒到1000毫秒之间
+    glitchDuration = 1500; // 500毫秒到1000毫秒之间
     
     lastGlitchTime = currentTime;
     isGlitchActive = true;
@@ -254,5 +254,4 @@ function animate() {
   // 使用composer渲染来应用后处理效果
   composer.render();
 }
-
 animate();
